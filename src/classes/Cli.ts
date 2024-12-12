@@ -21,6 +21,7 @@ class Cli {
 
   // static method to generate a vin
   static generateVin(): string {
+    // return a random string
     return (
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15)
@@ -74,8 +75,7 @@ class Cli {
         }
       });
   }
-
-  // method to create a car
+  // method to create a Car
   createCar(): void {
     inquirer
       .prompt([
@@ -113,14 +113,14 @@ class Cli {
       .then((answers) => {
         const car = new Car(
           // TODO: The generateVin method is static and should be called using the class name Cli, make sure to use Cli.generateVin() for creating a truck and motorbike as well!
-          Cli.generateVin(),
-          answers.color,
-          answers.make,
-          answers.model,
-          parseInt(answers.year),
-          parseInt(answers.weight),
-          parseInt(answers.topSpeed),
-          []
+          Cli.generateVin(),                 // VIN
+          answers.make,                      // Make
+          answers.model,                     // Model
+          parseInt(answers.weight),          // Weight (converted to number)
+          answers.color,                     // Color
+          parseInt(answers.year),            // Year (converted to number)
+          parseInt(answers.topSpeed),        // Top speed (converted to number)
+          []                                 // Default wheels array
         );
         // push the car to the vehicles array
         this.vehicles.push(car);
@@ -130,8 +130,7 @@ class Cli {
         this.performActions();
       });
   }
-
-  // method to create a truck
+  // method to create a Truck
   createTruck(): void {
     inquirer
       .prompt([
@@ -172,19 +171,21 @@ class Cli {
         },
       ])
       .then((answers) => {
+        // TODO: Use the answers object to pass the required properties to the Truck constructor
         const truck = new Truck(
-          Cli.generateVin(),
-          answers.color,
-          answers.make,
-          answers.model,
-          parseInt(answers.year),
-          parseInt(answers.weight),
-          parseInt(answers.topSpeed),
-          [],
-          parseInt(answers.towingCapacity)
+          Cli.generateVin(),                 // VIN
+          answers.make,                      // Make
+          answers.model,                     // Model
+          parseInt(answers.weight),          // Weight (converted to number)
+          parseInt(answers.topSpeed),        // Top speed (converted to number)
+          [],                                // Default wheels array
+          parseInt(answers.towingCapacity)   // Towing capacity (converted to number)
         );
+        // TODO: push the truck to the vehicles array
         this.vehicles.push(truck);
+        // TODO: set the selectedVehicleVin to the vin of the truck
         this.selectedVehicleVin = truck.vin;
+        // TODO: perform actions on the truck
         this.performActions();
       });
   }
@@ -245,21 +246,29 @@ class Cli {
         },
       ])
       .then((answers) => {
+        // TODO: Use the answers object to pass the required properties to the Motorbike constructor
         const motorbike = new Motorbike(
-          Cli.generateVin(),
-          answers.color,
-          answers.make,
-          answers.model,
-          parseInt(answers.year),
-          parseInt(answers.weight),
-          parseInt(answers.topSpeed),
-          [
-            new Wheel(parseInt(answers.frontWheelDiameter), answers.frontWheelBrand),
-            new Wheel(parseInt(answers.rearWheelDiameter), answers.rearWheelBrand),
+          Cli.generateVin(),                   // VIN
+          answers.make,                        // Make
+          answers.model,                       // Model
+          parseInt(answers.weight),            // Weight (converted to number)
+          parseInt(answers.topSpeed),          // Top speed (converted to number)
+          [                                    // Wheels array
+            new Wheel(
+              parseInt(answers.frontWheelDiameter), 
+              answers.frontWheelBrand
+            ),
+            new Wheel(
+              parseInt(answers.rearWheelDiameter), 
+              answers.rearWheelBrand
+            ),
           ]
         );
+        // TODO: push the motorbike to the vehicles array
         this.vehicles.push(motorbike);
+        // TODO: set the selectedVehicleVin to the vin of the motorbike
         this.selectedVehicleVin = motorbike.vin;
+        // TODO: perform actions on the motorbike
         this.performActions();
       });
   }
@@ -282,6 +291,7 @@ class Cli {
       .then((answers) => {
         const vehicleToTow = answers.vehicleToTow;
         // TODO: check if the selected vehicle is the truck
+        // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
         if (vehicleToTow === truck) {
           console.log("A truck cannot tow itself.");
           this.performActions();
@@ -319,6 +329,7 @@ class Cli {
         },
       ])
       .then((answers) => {
+        // perform the selected action
         if (answers.action === "Print details") {
           // find the selected vehicle and print its details
           for (let i = 0; i < this.vehicles.length; i++) {
@@ -376,7 +387,7 @@ class Cli {
             }
           }
         } else if (answers.action === "Tow vehicle") {
-          // TODO: add statements to perform the tow action only if the selected vehicle is a truck
+          // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
           const truck = this.vehicles.find(
             (v) => v.vin === this.selectedVehicleVin
           ) as Truck;
@@ -402,6 +413,7 @@ class Cli {
         }
 
         if (!this.exit) {
+          // if the user does not want to exit, perform actions on the selected vehicle
           this.performActions();
         }
       });

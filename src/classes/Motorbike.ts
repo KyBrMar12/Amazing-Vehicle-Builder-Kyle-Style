@@ -9,27 +9,25 @@ class Motorbike extends Vehicle {
   // TODO: The types should be as follows: vin (string), color (string), make (string), model (string), year (number), weight (number), topSpeed (number), wheels (Wheel[])
   wheels: Wheel[];
 
-  // TODO: Create a constructor that accepts the properties of the Motorbike class
-  // TODO: The constructor should call the constructor of the parent class, Vehicle
-  // TODO: The constructor should initialize the properties of the Motorbike class
-  // TODO: The constructor should check if the wheels array has 2 elements and create 2 new default Wheel objects if it does not
   constructor(
+    // TODO: Create a constructor that accepts the properties of the Motorbike class
+    // TODO: The constructor should call the constructor of the parent class, Vehicle
+    // TODO: The constructor should initialize the properties of the Motorbike class
+    // TODO: The constructor should check if the wheels array has 2 elements and create 2 new default Wheel objects if it does not 
     vin: string,
-    color: string,
     make: string,
     model: string,
-    year: number,
     weight: number,
     topSpeed: number,
     wheels: Wheel[]
   ) {
-    super(vin, color, make, model, year, weight, topSpeed);
+    super(vin, make, model, weight);
     this.wheels = wheels.length === 2 ? wheels : [new Wheel(), new Wheel()];
   }
-
+  
   // TODO: Implement the wheelie method
-  // TODO: The method should log the message "Motorbike [make] [model] is doing a wheelie!"
   wheelie(): void {
+    // TODO: The method should log the message "Motorbike [make] [model] is doing a wheelie!"
     console.log(`Motorbike ${this.make} ${this.model} is doing a wheelie!`);
   }
 
@@ -50,5 +48,5 @@ class Motorbike extends Vehicle {
   }
 }
 
-// TODO: Export the Motorbike class as the default export
+// Export the Motorbike class as the default export
 export default Motorbike;
