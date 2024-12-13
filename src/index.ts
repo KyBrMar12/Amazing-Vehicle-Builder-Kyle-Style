@@ -11,8 +11,10 @@ const vehicles = [];
 // TODO: uncomment once trucks are implemented
 const truck1 = new Truck(
   Cli.generateVin(), // VIN
+  "Metallic Gray",   // Color
   "Ford",            // Make
   "F-150",           // Model
+  2024,              // Year
   5000,              // Weight
   120,               // Top speed
   [new Wheel(), new Wheel(), new Wheel(), new Wheel()], // Wheels
@@ -28,15 +30,17 @@ const car1 = new Car(
   "blue",            // Color
   2021,              // Year
   130,               // Top speed
-  []                 // Wheels
+  []              // Wheels
 );
 
 // TODO: uncomment once motorbikes are implemented
 const motorbike1Wheels = [new Wheel(17, "Michelin"), new Wheel(17, "Michelin")];
 const motorbike1 = new Motorbike(
   Cli.generateVin(),       // VIN
+  "Baja Orange",           // Color
   "Harley Davidson",       // Make
   "Sportster",             // Model
+  2024,                    // Year
   500,                     // Weight
   125,                     // Top speed
   motorbike1Wheels         // Wheels

@@ -174,8 +174,10 @@ class Cli {
         // TODO: Use the answers object to pass the required properties to the Truck constructor
         const truck = new Truck(
           Cli.generateVin(),                 // VIN
+          answers.color,                     // Color
           answers.make,                      // Make
           answers.model,                     // Model
+          answers.year,                      // Year
           parseInt(answers.weight),          // Weight (converted to number)
           parseInt(answers.topSpeed),        // Top speed (converted to number)
           [],                                // Default wheels array
@@ -249,8 +251,10 @@ class Cli {
         // TODO: Use the answers object to pass the required properties to the Motorbike constructor
         const motorbike = new Motorbike(
           Cli.generateVin(),                   // VIN
+          answers.color,                       // Color
           answers.make,                        // Make
           answers.model,                       // Model
+          answers.year,                        // Year
           parseInt(answers.weight),            // Weight (converted to number)
           parseInt(answers.topSpeed),          // Top speed (converted to number)
           [                                    // Wheels array
